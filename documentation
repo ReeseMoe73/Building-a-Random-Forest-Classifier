@@ -1,0 +1,49 @@
+Capabilities
+
+Auto-fallback dataset: If train/test aren’t provided, the script builds a tidy Iris frame and proceeds (lowercasing/normalizing column names). 
+
+random_forest_classifier_rev
+
+Typed preprocessing: Median imputation for numeric features; most-frequent + one-hot for categoricals; unknown categories handled gracefully at inference. 
+
+random_forest_classifier_rev
+
+Modeling: Random Forest (n_estimators=300, n_jobs=-1) wrapped in a Pipeline. 
+
+random_forest_classifier_rev
+
+Validation: Stratified train/validation split (where feasible), accuracy and macro-F1, classification report, printed and plotted confusion matrix. 
+
+random_forest_classifier_rev
+
+Explainability: Transformed-space feature importances with names recovered from the column transformer. 
+
+random_forest_classifier_rev
+
+Predictions on holdout: Scores a provided test[features] and returns a preds_df with the prediction column.
+
+Requirements
+
+Python: 3.9+ (3.8+ generally fine)
+
+Packages: pandas, numpy, scikit-learn, matplotlib, joblib (imported for potential persistence)
+Install:
+Quick Start (Iris Fallback)
+
+Simply run the script (IDE or terminal). If you have not defined train/test, it will:
+
+Load Iris as a DataFrame, rename columns (snake-case), set species as the target,
+
+Build a stratified train/validation split, fit the pipeline, print metrics, plot confusion matrix,
+
+Predict on a holdout test derived from Iris features and create preds_df. 
+
+random_forest_classifier_rev
+
+5) Using Your Own Data
+
+You can drive the pipeline with your own DataFrames. Minimum contract:
+
+train: a pandas.DataFrame with features + a target column
+
+test: a pandas.DataFrame with features only (same columns, same order not required but same names required)
